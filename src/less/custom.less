@@ -1,0 +1,275 @@
+@brand-default: #999;
+@brand-primary: #009871;
+@brand-primary-hover: #0B7D60;
+@brand-primary-dark: #004F3B;
+@brand-success: #5cb85c;
+@brand-warning: #f0ad4e;
+@brand-danger: #d9534f;
+@brand-info: #5bc0de;
+@brand-lightness: #ddd;
+@dark-background: #101010;
+@fonts: 'Open Sans','Helvetica Neue', Helvetica, Arial, sans-serif;
+@light-background: #ededed;
+@screen-green: #00ff00;
+@robot-font: 'Share Tech Mono', monospace;
+@text-color: #333333;
+
+html,
+body {
+  height: 100%;
+}
+body {
+  background-color: @light-background;
+  font-family: @fonts;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  color: @text-color;
+  font-family: @fonts;
+  font-weight: 600;
+}
+hr {
+  border-top-color: @brand-default;
+  border-bottom: 1px solid #fff;
+}
+
+.container {
+  width: 80%;
+}
+
+.main {
+  padding: 40px 0 40px;
+}
+
+button {
+  display: block;
+  margin-top: 5px;
+  width: 100%;
+
+  &.btn-primary {
+    background-color: @brand-primary;
+    border-color: @brand-primary-dark;
+  }
+  &.btn-primary:hover,
+  &.btn-primary:focus,
+  &.btn-primary:active {
+    background-color: @brand-primary-hover;
+    border-color: @brand-primary-dark;
+  }
+}
+
+.demo-container {
+  background: @dark-background;
+  margin-bottom: 40px;
+  overflow: auto;
+  padding: 0;
+
+  .output {
+    color: @screen-green;
+    font-family: @robot-font;
+    padding: 19px;  // same as .well
+
+    hr {
+      border-top-color: @screen-green;
+      border-top-style: dashed;
+      border-bottom: none;
+    }
+  }
+}
+
+.demo-height {
+  height: 300px;
+  position: relative;
+}
+
+header {
+  float: left;
+  margin: 0 0 0.3em;
+  width: 100%;
+
+  .date {
+    float: none;
+    text-align: right;
+
+    p {
+      background-color: @brand-primary;
+      color: #fff;
+      font-size: 0.7em;
+      font-weight: 600;
+      padding: 0.2em 1em;
+
+      .glyphicon {
+        font-size: 1.2em;
+      }
+    }
+  }
+
+  .headline {
+    float: none;
+    text-align: left;
+    max-width: none;
+  }
+}
+
+.control-demo {
+  min-height: 500px;
+
+  .controller {
+    clear: both;
+    float: left;
+    position: relative;
+    width: 100%;
+
+    header {
+      clear: both;
+      font-family: @robot-font;
+      margin-bottom: 1em;
+      min-height: 42px;
+      position: relative;
+
+      h4 {
+        font-family: @robot-font;
+      }
+
+      .robot {
+        display: inline-block;
+        font-weight: bold;
+        font-size: 1em;
+        height: 42px;
+        position: relative;
+        vertical-align: middle;
+        width: 30px;
+
+        .bulb {
+          background-color: @light-background;
+          border: 2px solid @text-color;
+          border-radius: 20px;
+          font-size: 0.9em;
+          height: 20px;
+          position: absolute;
+          left: 0.25em;
+          transform: rotate(90deg);
+          width: 20px;
+
+          span {
+            position: absolute;
+            bottom: -0.1em;
+            left: 0.15em;
+          }
+        }
+
+        .head {
+          background-color: @light-background;
+          border: 2px solid @text-color;
+          border-radius: 6px;
+          height: 30px;
+          left: 0.1em;
+          position: absolute;
+          top: 0.9em;
+          transform: rotate(90deg);
+          width: 25px;
+
+          span {
+            position: absolute;
+
+            &.eyes {
+              bottom: 0.05em;
+              font-size: 1.4em;
+              left: 0.1em;
+            }
+
+            &.mouth {
+              bottom: 0.23em;
+              left: 0.7em;
+            }
+          }
+        }
+      }
+
+      .welcome {
+        display: inline-block;
+        padding-left: 0.3em;
+        position: relative;
+        max-width: 75%;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .demo-container {
+    float: none;
+    width: 100%;
+  }
+}
+
+.label-primary {
+  background-color: @brand-primary;
+}
+
+.flags {
+  clear: both;
+  margin-bottom: 40px;
+  width: 100%;
+
+  .flag {
+    float: left;
+    margin-right: 1em;
+  }
+}
+
+@media (min-width: 480px) {
+  button {
+    display: inline-block;
+    margin-top: 0;
+    width: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 720px;
+  }
+
+  header {
+    .date {
+      float: right;
+
+      p {
+        font-size: 1em;
+        padding: 1em;
+      }
+    }
+
+    .headline {
+      float: left;
+      max-width: 80%;
+    }
+  }
+
+  .demo-height {
+    height: 500px;
+    position: relative;
+  }
+
+  .control-demo {
+    .controller {
+      float: left;
+      width: 40%;
+    }
+    .demo-container {
+      float: right;
+      width: 58%;
+    }
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 920px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1120px;
+  }
+}
+
+

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+	<title>Haiku-Bot</title>
+
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Share+Tech+Mono:400'
+		rel='stylesheet' type='text/css'>
+	<link href="assets/css/custom.min.css" rel="stylesheet">
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div class="container main">
+		<article class="control-demo">
+			<header>
+				<div class="date">
+					<p><span title="3/8" class="glyphicon glyphicon-barcode"
+						aria-label="3/8"></span></p>
+				</div>
+				<div class="headline"><h3><small>Haiku-Bot</small> Demo</h3></h3></div>
+			</header>
+
+			<section class="controller well">
+				<header>
+					<span class="robot" role="presentation">
+						<span class="bulb"><span>{</span></span>
+						<span class="head">
+							<span class="eyes">:</span>
+							<span class="mouth">|</span>
+						</span>
+					</span>
+					<span class="welcome">
+						<h4>Hi! I'm Haiku-Bot.</h4>
+					</span>
+				</header>
+				<p>I can make very nice haiku for you from a dictionary of over
+					55,000 words! I know how many syllables each word has and
+					their part of speech. I even follow a form while picking
+					the words.</p>
+				<p>I do my best, but I'm super dumb. See for yourself!</p>
+				<hr />
+				<div class="controls">
+					<button class="btn btn-primary" id="createHaiku"
+						aria-label="Make Another">Make Another</button>
+					<button class="btn btn-primary pull-right" id="clearOutput"
+						aria-label="Clear">Clear</button>
+				</div>
+			</section>
+
+			<section class="demo-container well demo-height" id="outputScroll">
+				<div class="output" id="output"></div>
+			</section>
+
+			<section class="flags">
+				<div class="flag pull-right">
+					<p>
+						<a href="https://github.com/lifedinosaur/haiku-bot"
+							target="_blank">Haiku-Bot</a>&nbsp;
+						<span class="label label-primary">GitHub</span>
+					</p>
+				</div>
+			</section>
+		</article>
+	</div>
+
+	<script type="text/javascript" data-main="assets/js/main"
+		src="assets/js/lib/require.js"></script>
+</body>
+</html>
+

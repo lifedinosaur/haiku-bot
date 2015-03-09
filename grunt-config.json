@@ -1,0 +1,37 @@
+{
+  "autoprefixerBrowsers": [
+    "Android 2.3",
+    "Android >= 4",
+    "Chrome >= 20",
+    "Firefox >= 24",
+    "Explorer >= 8",
+    "iOS >= 6",
+    "Opera >= 12",
+    "Safari >= 6"
+  ],
+  "paths": {
+    "bootstrapSrc": "packages/bootstrap/",
+    "dest": {
+      "dist": "dist/",
+      "build": "dist/assets/",
+      "css": "dist/assets/css/",
+      "dict": "dist/assets/dictionary/",
+      "fonts": "dist/assets/fonts/",
+      "img": "dist/assets/img/",
+      "js": "dist/assets/js/",
+      "lib": "dist/assets/js/lib/",
+      "svg": "dist/assets/js/svg/",
+      "bootstrap": "dist/assets/js/lib/bootstrap/",
+      "blocks": "dist/assets/js/lib/blocks/",
+      "greensock": "dist/assets/js/lib/greensock/"
+    },
+    "src": {
+      "dict": "src/dictionary/",
+      "html": "src/",
+      "img": "src/img/",
+      "js": "src/js/",
+      "less": "src/less/"
+    },
+    "pkg": "packages/"
+  }
+}
