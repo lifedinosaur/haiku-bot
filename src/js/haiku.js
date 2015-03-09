@@ -7,7 +7,7 @@ define(
 function ($, _, plugins) {
   'use strict';
 
-  var DICTIONARY_SRC = 'http://localhost/haiku-bot/dist/assets/dictionary/dictionary.json';
+  var DICTIONARY_SRC = 'http://lifedinosaur.com/haiku-bot/assets/dictionary/dictionary.json';
   var DICTIONARY = {};
 
   // Part of speech keys:
