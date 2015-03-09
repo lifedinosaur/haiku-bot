@@ -17,18 +17,13 @@
       "css": "dist/assets/css/",
       "dict": "dist/assets/dictionary/",
       "fonts": "dist/assets/fonts/",
-      "img": "dist/assets/img/",
       "js": "dist/assets/js/",
       "lib": "dist/assets/js/lib/",
-      "svg": "dist/assets/js/svg/",
-      "bootstrap": "dist/assets/js/lib/bootstrap/",
-      "blocks": "dist/assets/js/lib/blocks/",
-      "greensock": "dist/assets/js/lib/greensock/"
+      "bootstrap": "dist/assets/js/lib/bootstrap/"
     },
     "src": {
       "dict": "src/dictionary/",
       "html": "src/",
-      "img": "src/img/",
       "js": "src/js/",
       "less": "src/less/"
     },

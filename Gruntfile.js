@@ -15,47 +15,7 @@ module.exports = function(grunt) {
 
     volo: {
       'cmd-add': 'volo:add:-nostamp:',
-      'cmd-addF': 'volo:add:-f:-nostamp:',
-      'cmd-amdify': 'volo:amdify:-noprompt:',
-
-      // amdify files with volo
-      // property name should be the name of the .js file to amdify
-      // assign a config object with options for each file
-      amdify: {
-        // Bootstrap:
-        affix: '<%= volo.tmpl.bootstrapTransition %>',
-        alert: '<%= volo.tmpl.bootstrapTransition %>',
-        button: '<%= volo.tmpl.bootstrapTransition %>',
-        carousel: '<%= volo.tmpl.bootstrapTransition %>',
-        collapse: '<%= volo.tmpl.bootstrapTransition %>',
-        dropdown: '<%= volo.tmpl.bootstrapTransition %>',
-        modal: '<%= volo.tmpl.bootstrapTransition %>',
-        popover: '<%= volo.tmpl.bootstrapTransition %>',
-        scrollspy: '<%= volo.tmpl.bootstrapTransition %>',
-        tab: '<%= volo.tmpl.bootstrapTransition %>',
-        tooltip: '<%= volo.tmpl.bootstrapTransition %>',
-        transition: '<%= volo.tmpl.bootstrap %>',
-        // Greensock:
-        ColorPropsPlugin: '<%= volo.tmpl.greensock %>',
-        EasePack: '<%= volo.tmpl.greensock %>'
-      },
-      // template config objects:
-      tmpl: {
-        bootstrapTransition: {
-          src: '<%= config.paths.dest.bootstrap %>',
-          deps: [
-            'jquery',
-            'lib/bootstrap/transition'
-          ]
-        },
-        bootstrap: {
-          src: '<%= config.paths.dest.bootstrap %>',
-          deps: ['jquery']
-        },
-        greensock: {
-          src: '<%= config.paths.dest.greensock %>'
-        }
-      }
+      'cmd-addF': 'volo:add:-f:-nostamp:'
     },
 
     // tasks init:
@@ -102,21 +62,8 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           flatten: true,
-          src: '<%= config.paths.pkg %>' + 'bootstrap/js/*.js',
-          dest: '<%= config.paths.dest.bootstrap %>'
-        }, {
-          expand: true,
-          flatten: true,
           src: '<%= config.paths.pkg %>' + 'bootstrap/fonts/*',
           dest: '<%= config.paths.dest.fonts %>'
-        }]
-      },
-      codePrettify: {
-        files: [{
-          expand: true,
-          flatten: true,
-          src: '<%= config.paths.pkg %>' + 'codePrettify/src/prettify.js',
-          dest: '<%= config.paths.dest.lib %>'
         }]
       },
       dictionary: {
@@ -125,18 +72,6 @@ module.exports = function(grunt) {
           flatten: true,
           src: '<%= config.paths.src.dict %>' + 'dictionary.json',
           dest: '<%= config.paths.dest.dict %>'
-        }]
-      },
-      greensock: {
-        files: [{
-          expand: true,
-          flatten: true,
-          src: [
-            '<%= config.paths.pkg %>' + 'greensock/src/uncompressed/TweenLite.js',
-            '<%= config.paths.pkg %>' + 'greensock/src/uncompressed/easing/EasePack.js',
-            '<%= config.paths.pkg %>' + 'greensock/src/uncompressed/plugins/ColorPropsPlugin.js'
-          ],
-          dest: '<%= config.paths.dest.greensock %>'
         }]
       },
       html: {
@@ -201,7 +136,6 @@ module.exports = function(grunt) {
         },
         src: [
           '<%= config.paths.pkg %>' + 'bootstrap/less/bootstrap.less',
-          '<%= config.paths.src.less %>' + 'prettify.less',
           '<%= config.paths.src.less %>' + 'custom.less'
         ],
         dest: '<%= config.paths.dest.css %>' + 'custom.min.css'
@@ -396,42 +330,11 @@ module.exports = function(grunt) {
     grunt.task.run(cmd);
   });
 
-  grunt.registerTask('packages:amdify', function () {
-    var amdify = grunt.config.get('volo.cmd-amdify');
-    var cmd = [];
-
-    // Construct a volo amdify command for the given file
-    function writeVolo (file) {
-      // Find the def object in volo.pkg.amdify
-      var obj = grunt.config.get('volo.amdify.' + file);
-      var cmd = amdify + obj.src + file + '.js';
-
-      if (obj.deps) {
-        cmd += ':depends=' + obj.deps.toString();
-      }
-      if (obj.exports) {
-        cmd += ':exports=' + obj.exports.toString();
-      }
-
-      return cmd;
-    }
-
-    // Add all files to the task:
-    for (var file in grunt.config.get('volo.amdify')) {
-      cmd.push(writeVolo(file));
-    }
-
-    grunt.task.run(cmd);
-  });
-
   grunt.registerTask('copy:packages', [
     'copy:bootstrap',
-    'copy:codePrettify',
-    'copy:greensock',
     'copy:jquery',
     'copy:lodash',
-    'copy:require',
-    'packages:amdify'
+    'copy:require'
   ]);
 
   grunt.registerTask('less:dev', [
