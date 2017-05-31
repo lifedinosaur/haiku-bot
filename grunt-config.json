@@ -27,6 +27,6 @@
       "js": "src/js/",
       "less": "src/less/"
     },
-    "pkg": "packages/"
+    "bower": "bower_components/"
   }
 }
