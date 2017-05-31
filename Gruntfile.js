@@ -13,11 +13,6 @@ module.exports = function(grunt) {
     config: grunt.file.readJSON('grunt-config.json', { encoding: 'utf8'}),
     pkgJson: grunt.file.readJSON('package.json', { encoding: 'utf8'}),
 
-    volo: {
-      'cmd-add': 'volo:add:-nostamp:',
-      'cmd-addF': 'volo:add:-f:-nostamp:'
-    },
-
     // tasks init:
 
     autoprefixer: {
@@ -38,7 +33,6 @@ module.exports = function(grunt) {
       css: '<%= config.paths.dest.css %>',
       fonts: '<%= config.paths.dest.fonts %>',
       lib: '<%= config.paths.dest.lib %>',
-      pkg: '<%= config.paths.pkg %>',
       prod: [
         '<%= config.paths.dest.js %>' + '*.js',
         '!' + '<%= config.paths.dest.js %>' + 'main.js',
@@ -62,7 +56,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           flatten: true,
-          src: '<%= config.paths.pkg %>' + 'bootstrap/fonts/*',
+          src: '<%= config.paths.bower %>' + 'bootstrap/fonts/*',
           dest: '<%= config.paths.dest.fonts %>'
         }]
       },
@@ -87,7 +81,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           flatten: true,
-          src: '<%= config.paths.pkg %>' + 'jquery/dist/jquery.js',
+          src: '<%= config.paths.bower %>' + 'jquery/dist/jquery.js',
           dest: '<%= config.paths.dest.lib %>'
         }]
       },
@@ -95,7 +89,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           flatten: true,
-          src: '<%= config.paths.pkg %>' + 'lodash/lodash.js',
+          src: '<%= config.paths.bower %>' + 'lodash/lodash.js',
           dest: '<%= config.paths.dest.lib %>'
         }]
       },
@@ -113,7 +107,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           flatten: true,
-          src: '<%= config.paths.pkg %>' + 'require/require.js',
+          src: '<%= config.paths.bower %>' + 'requirejs-bower/require.js',
           dest: '<%= config.paths.dest.lib %>'
         }]
       }
@@ -135,7 +129,7 @@ module.exports = function(grunt) {
           outputSourceFiles: false
         },
         src: [
-          '<%= config.paths.pkg %>' + 'bootstrap/less/bootstrap.less',
+          '<%= config.paths.bower %>' + 'bootstrap/less/bootstrap.less',
           '<%= config.paths.src.less %>' + 'custom.less'
         ],
         dest: '<%= config.paths.dest.css %>' + 'custom.min.css'
@@ -239,97 +233,6 @@ module.exports = function(grunt) {
   }); // End initConfig
 
 
-  grunt.registerTask('packages', function () {
-    // if 'dl' is not specified and the packages folder is missing
-    // add the arg and continue
-    if (this.args.length === 0) {
-      var folder = grunt.config.get('config.paths.pkg');
-      if(!grunt.file.exists(folder)) {
-        this.args[0] = 'dl';
-      }
-    }
-
-    // Clean all build lib:
-    var cmd = ['clean:bootstrap', 'clean:lib'];
-
-    // Add dl as first arg to enable packages:download task
-    // Additional arguments are passed to packages:download
-    // Disabled by default to reduce calls to API.
-    if (this.args[0] === 'dl') {
-      var dl = 'packages:download';
-
-      if (this.args.length > 1) {
-        for (var i = 1; i < this.args.length; i++) {
-          dl += ':' + this.args[i];
-        }
-      }
-      cmd.push(dl);
-    }
-    cmd.push('copy:packages');
-
-    grunt.task.run(cmd);
-  });
-
-  grunt.registerTask('packages:download', function () {
-    var add = grunt.config.get('volo.cmd-add');
-    var addF = grunt.config.get('volo.cmd-addF');
-    var cmd = [];
-
-    // Construct a volo add command for the given lib and save repo in pkg/lib:
-    function writeVolo (useAdd, lib) {
-      return useAdd + grunt.config.get('pkgJson.volo.add.' + lib) + ':' +
-        grunt.config.get('config.paths.pkg') + lib + '/';
-    }
-
-    // Add all packages from volo config var:
-    function addAll (useAdd) {
-      for(var pkg in grunt.config.get('pkgJson.volo.add')) {
-        cmd.push(writeVolo(useAdd, pkg));
-      }
-    }
-
-    // Args can target a particular lib by name:
-    if (this.args.length > 0) {
-      for (var i = 0; i < this.args.length; i++) {
-        var useAdd = add;
-
-        // Allow '-f' flag to force each lib:
-        var parts = this.args[i].split('-');
-        var lib = parts[0];
-        var flag = parts[1];
-
-        // Parse out errors:
-        if (parts.length > 2) {
-          grunt.log.error(['packages:download only supports one var flag: use -f only']);
-          return;
-        }
-        if (parts.length === 1 && !lib) {
-          grunt.log.error(['packages:download does not recognize that library']);
-          return;
-        }
-
-        // Add '-f' to volo add:
-        if (flag === 'f') {
-          useAdd = addF;
-        }
-        if (!lib) {
-          // Only '-f' was specified. Load all packages:
-          addAll(useAdd);
-        }
-        else {
-          // Load the given lib
-          cmd.push(writeVolo(useAdd, lib));
-        }
-      }
-    }
-    else {
-      // Load all packages with no '-f':
-      addAll(add);
-    }
-
-    grunt.task.run(cmd);
-  });
-
   grunt.registerTask('copy:packages', [
     'copy:bootstrap',
     'copy:jquery',
@@ -353,6 +256,8 @@ module.exports = function(grunt) {
     'jshint:source',
     'clean:source',
     'copy:source',
+    'clean:lib',
+    'copy:packages',
     'qunit'
   ]);
 
@@ -380,7 +285,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build:dev', [
     'clean:build',
-    'packages',
     'copy:source',
     'copy:dictionary',
     'source:dev'
@@ -388,7 +292,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build:prod', [
     'clean:build',
-    'packages',
     'copy:source',
     'copy:dictionary',
     'source:prod',

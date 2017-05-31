@@ -1,0 +1,84 @@
+@screen-green: #00ff00;
+@robot-font: 'Share Tech Mono', monospace;
+
+.haiku-bot {
+  .controller header {
+    clear: both;
+    font-family: @robot-font;
+    margin-bottom: 1em;
+    min-height: 42px;
+    position: relative;
+
+    h4 {
+      font-family: @robot-font;
+    }
+
+    .robot {
+      display: inline-block;
+      font-weight: bold;
+      font-size: 1em;
+      height: 42px;
+      position: relative;
+      vertical-align: middle;
+      width: 30px;
+
+      .bulb {
+        background-color: @light-background;
+        border: 2px solid @text-color;
+        border-radius: 20px;
+        font-size: 0.9em;
+        height: 20px;
+        position: absolute;
+        left: 0.25em;
+        top: -0.15em;
+        transform: rotate(90deg);
+        width: 20px;
+
+        span {
+          position: absolute;
+          bottom: -0.05em;
+          left: 0.15em;
+        }
+      }
+
+      .head {
+        background-color: @light-background;
+        border: 2px solid @text-color;
+        border-radius: 6px;
+        height: 25px;
+        left: 0.05em;
+        position: absolute;
+        top: 0.9em;
+        width: 30px;
+
+        span {
+          position: absolute;
+          transform: rotate(90deg);
+
+          &.eyes {
+            bottom: 0.05em;
+            font-size: 1.4em;
+            left: 0.5em;
+          }
+
+          &.mouth {
+            bottom: -0.2em;
+            left: 0.7em;
+          }
+        }
+      }
+    }
+  }
+
+  .demo-container .output {
+    color: @screen-green;
+    font-family: @robot-font;
+    padding: 19px;  // same as .well
+
+    hr {
+      border-top-color: @screen-green;
+      border-top-style: dashed;
+      border-bottom: none;
+    }
+  }
+}

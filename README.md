@@ -1,4 +1,4 @@
-#Haiku-Bot
+# Haiku-Bot
 ## A rather basic haiku poem generator.
 
 Haiku-Bot utilizes a syllabalized and part-of-speech-keyed dictionary to

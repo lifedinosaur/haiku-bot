@@ -10,8 +10,6 @@
 @dark-background: #101010;
 @fonts: 'Open Sans','Helvetica Neue', Helvetica, Arial, sans-serif;
 @light-background: #ededed;
-@screen-green: #00ff00;
-@robot-font: 'Share Tech Mono', monospace;
 @text-color: #333333;
 
 html,
@@ -62,18 +60,6 @@ button {
   margin-bottom: 40px;
   overflow: auto;
   padding: 0;
-
-  .output {
-    color: @screen-green;
-    font-family: @robot-font;
-    padding: 19px;  // same as .well
-
-    hr {
-      border-top-color: @screen-green;
-      border-top-style: dashed;
-      border-bottom: none;
-    }
-  }
 }
 
 .demo-height {
@@ -120,71 +106,6 @@ header {
     width: 100%;
 
     header {
-      clear: both;
-      font-family: @robot-font;
-      margin-bottom: 1em;
-      min-height: 42px;
-      position: relative;
-
-      h4 {
-        font-family: @robot-font;
-      }
-
-      .robot {
-        display: inline-block;
-        font-weight: bold;
-        font-size: 1em;
-        height: 42px;
-        position: relative;
-        vertical-align: middle;
-        width: 30px;
-
-        .bulb {
-          background-color: @light-background;
-          border: 2px solid @text-color;
-          border-radius: 20px;
-          font-size: 0.9em;
-          height: 20px;
-          position: absolute;
-          left: 0.25em;
-          transform: rotate(90deg);
-          width: 20px;
-
-          span {
-            position: absolute;
-            bottom: -0.1em;
-            left: 0.15em;
-          }
-        }
-
-        .head {
-          background-color: @light-background;
-          border: 2px solid @text-color;
-          border-radius: 6px;
-          height: 30px;
-          left: 0.1em;
-          position: absolute;
-          top: 0.9em;
-          transform: rotate(90deg);
-          width: 25px;
-
-          span {
-            position: absolute;
-
-            &.eyes {
-              bottom: 0.05em;
-              font-size: 1.4em;
-              left: 0.1em;
-            }
-
-            &.mouth {
-              bottom: 0.23em;
-              left: 0.7em;
-            }
-          }
-        }
-      }
-
       .welcome {
         display: inline-block;
         padding-left: 0.3em;
@@ -272,4 +193,4 @@ header {
   }
 }
 
-
+@import "haiku-bot.less";
