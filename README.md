@@ -9,7 +9,7 @@ See it in action [here].
 
 ### Make it so:
   - Have your [Node] sorted
-  - Get ahold of [Grunt]
+  - Get ahold of [Grunt] and [Bower]
   - Checkout or download this repo
   - 'cd' to it on the command-line and run 'npm install'
   - Run 'grunt' or 'grunt build' to create the 'dist/'
@@ -30,4 +30,5 @@ you're trying to loot-it-up.
 [here]:http://www.lifedinosaur.com/haiku-bot
 [Node]:https://nodejs.org/
 [Grunt]:http://gruntjs.com/getting-started
+[Bower]:https://bower.io/#install-bower
 [Haiku-Bot license]:https://github.com/lifedinosaur/haiku-bot/blob/master/LICENSE
