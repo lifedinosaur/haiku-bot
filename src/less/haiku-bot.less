@@ -2,6 +2,18 @@
 @robot-font: 'Share Tech Mono', monospace;
 
 .haiku-bot {
+  .demo-container {
+    background: @dark-background;
+    margin-bottom: 40px;
+    overflow: auto;
+    padding: 0;
+  }
+
+  .demo-height {
+    height: 300px;
+    position: relative;
+  }
+
   .controller header {
     clear: both;
     font-family: @robot-font;
@@ -9,8 +21,17 @@
     min-height: 42px;
     position: relative;
 
+    .welcome {
+      display: inline-block;
+      padding-left: 0.3em;
+      position: relative;
+      max-width: 75%;
+      vertical-align: middle;
+    }
+
     h4 {
       font-family: @robot-font;
+      margin: 10px 0;
     }
 
     .robot {
@@ -79,6 +100,24 @@
       border-top-color: @screen-green;
       border-top-style: dashed;
       border-bottom: none;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .haiku-bot {
+    .demo-height {
+      height: 500px;
+      position: relative;
+    }
+
+    .controller {
+      float: left;
+      width: 40%;
+    }
+    .demo-container {
+      float: right;
+      width: 58%;
     }
   }
 }
